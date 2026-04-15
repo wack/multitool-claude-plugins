@@ -1,0 +1,42 @@
+{
+  "eval_id": 2,
+  "eval_name": "python-new-user",
+  "prompt": "We use Python/FastAPI and want to connect our tracing to MultiTool. We have OpenTelemetry configured already. My API key is mt_sk_abc123 and our deploys use Docker image tags like v2.1.4 so I'll set APP_VERSION to that.",
+  "assertions": [
+    {
+      "id": "correct_otlp_url",
+      "description": "Output tracing.py uses the exact MultiTool endpoint URL",
+      "check": "tracing.py contains exactly 'https://api.multitool.run/otlp/v1/traces'"
+    },
+    {
+      "id": "correct_header_name",
+      "description": "Output tracing.py uses 'api-key' as the header name",
+      "check": "tracing.py header key is 'api-key'"
+    },
+    {
+      "id": "correct_api_key_env_var",
+      "description": "Output tracing.py reads API key from MULTI_API_KEY env var",
+      "check": "tracing.py references MULTI_API_KEY"
+    },
+    {
+      "id": "http_exporter_not_grpc",
+      "description": "Output tracing.py uses the HTTP exporter, not gRPC (gRPC exporter removed/replaced)",
+      "check": "tracing.py does not import from 'proto.grpc.trace_exporter'"
+    },
+    {
+      "id": "service_version_from_app_version",
+      "description": "Output tracing.py sets SERVICE_VERSION from APP_VERSION env var",
+      "check": "tracing.py references APP_VERSION for the service version attribute"
+    },
+    {
+      "id": "api_key_env_var_reminder",
+      "description": "Response reminds user to store API key as env var, not in code",
+      "check": "response.md warns against hardcoding the API key and tells user to use an env var"
+    },
+    {
+      "id": "per_deploy_version_importance",
+      "description": "Response explains why APP_VERSION must change with every deploy",
+      "check": "response.md explains that APP_VERSION must be unique per deploy for MultiTool version grouping to work"
+    }
+  ]
+}

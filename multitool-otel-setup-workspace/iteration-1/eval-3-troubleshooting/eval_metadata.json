@@ -1,0 +1,27 @@
+{
+  "eval_id": 3,
+  "eval_name": "troubleshooting",
+  "prompt": "I set up MultiTool last week using your instructions and traces were showing up, but I pushed a new version yesterday and now I can't tell which traces are from the new version vs old. Also sometimes I see no new traces at all after deploying.",
+  "assertions": [
+    {
+      "id": "app_version_added_to_compose",
+      "description": "Output docker-compose.yml adds APP_VERSION to the service's environment section",
+      "check": "docker-compose.yml contains APP_VERSION in the environment block"
+    },
+    {
+      "id": "root_cause_explained",
+      "description": "Response explains that missing APP_VERSION causes all versions to appear merged in MultiTool",
+      "check": "response.md explains why a missing or constant APP_VERSION causes version grouping to break in MultiTool"
+    },
+    {
+      "id": "missing_traces_root_cause",
+      "description": "Response explains the connection between missing env vars and intermittent missing traces",
+      "check": "response.md explains that MULTI_API_KEY not being set in the runtime environment causes traces to be silently dropped"
+    },
+    {
+      "id": "tracing_code_not_modified",
+      "description": "tracing.ts is either not present in outputs or is identical to the input (the bug is in deployment, not code)",
+      "check": "No tracing.ts output exists, or output tracing.ts is identical to the input tracing.ts"
+    }
+  ]
+}
