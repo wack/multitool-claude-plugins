@@ -1,4 +1,4 @@
-# multitool
+# MultiTool Claude Plugins
 
 A Claude Code plugin that onboards services to [MultiTool](https://multitool.run)
 by wiring an existing OpenTelemetry setup to the MultiTool OTLP endpoint.
