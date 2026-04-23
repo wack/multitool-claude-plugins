@@ -38,8 +38,7 @@ After editing skill files, run `/reload-plugins` inside Claude Code to pick up
 changes. The skill is model-invoked, so trigger it by describing a MultiTool
 onboarding task rather than invoking it by name.
 
-## Dev tooling
+## Evaluation artifacts
 
-The `.claude/skills/skill-creator/` directory and `multitool-otel-setup-workspace/`
-are used for authoring and evaluating the skill; they are not part of what the
-plugin ships to users.
+`multitool-otel-setup-workspace/` holds benchmark runs and eval outputs from
+iterating on the skill. It is not loaded by the plugin at runtime.
