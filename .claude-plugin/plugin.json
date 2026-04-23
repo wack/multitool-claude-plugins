@@ -1,0 +1,5 @@
+{
+  "name": "multitool",
+  "description": "Onboard services to MultiTool by wiring OpenTelemetry traces to the MultiTool OTLP endpoint.",
+  "version": "0.1.0"
+}
