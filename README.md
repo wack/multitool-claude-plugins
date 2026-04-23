@@ -23,8 +23,7 @@ Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, PHP, .NET.
 └── skills/
     └── otel-setup/
         ├── SKILL.md                # skill instructions + frontmatter
-        ├── references/             # per-language setup snippets
-        └── evals/                  # skill evaluation fixtures
+        └── references/             # per-language setup snippets
 ```
 
 ## Local development
@@ -38,8 +37,3 @@ claude --plugin-dir .
 After editing skill files, run `/reload-plugins` inside Claude Code to pick up
 changes. The skill is model-invoked, so trigger it by describing a MultiTool
 onboarding task rather than invoking it by name.
-
-## Evaluation artifacts
-
-`multitool-otel-setup-workspace/` holds benchmark runs and eval outputs from
-iterating on the skill. It is not loaded by the plugin at runtime.
