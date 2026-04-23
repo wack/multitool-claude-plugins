@@ -5,7 +5,8 @@ by wiring an existing OpenTelemetry setup to the MultiTool OTLP endpoint.
 
 ## What it does
 
-The plugin ships one skill, `multitool-otel-setup`, which Claude automatically
+The plugin ships one skill, `otel-setup` (invoked as `/multitool:otel-setup`),
+which Claude automatically
 invokes when a user mentions MultiTool in the context of tracing, monitoring,
 or observability. It walks the user through creating an API key, picking a
 `service.version` identifier, and points the OTLP HTTP exporter at
@@ -20,7 +21,7 @@ Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, PHP, .NET.
 ├── .claude-plugin/
 │   └── plugin.json                 # plugin manifest
 └── skills/
-    └── multitool-otel-setup/
+    └── otel-setup/
         ├── SKILL.md                # skill instructions + frontmatter
         ├── references/             # per-language setup snippets
         └── evals/                  # skill evaluation fixtures

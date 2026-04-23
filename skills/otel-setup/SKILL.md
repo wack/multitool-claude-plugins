@@ -1,5 +1,5 @@
 ---
-name: multitool-otel-setup
+name: otel-setup
 description: >
   Configures an existing OpenTelemetry setup to send trace data to MultiTool.
   Use this skill whenever a user mentions MultiTool in the context of tracing,
