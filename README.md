@@ -12,7 +12,7 @@ or observability. It walks the user through creating an API key, picking a
 `service.version` identifier, and points the OTLP HTTP exporter at
 `https://api.multitool.run/otlp/v1/traces`.
 
-Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, PHP, .NET.
+Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, Rust, PHP, .NET.
 
 ## Layout
 

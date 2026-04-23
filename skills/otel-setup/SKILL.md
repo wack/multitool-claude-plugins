@@ -23,7 +23,8 @@ header, and make sure each deployment has a unique `service.version` attribute.
 Before writing any code, explore the project to understand:
 
 - **Language/runtime** — look for `package.json`, `go.mod`, `requirements.txt`,
-  `pyproject.toml`, `pom.xml`, `build.gradle`, `Gemfile`, `*.csproj`, `composer.json`
+  `pyproject.toml`, `pom.xml`, `build.gradle`, `Gemfile`, `*.csproj`, `composer.json`,
+  `Cargo.toml`
 - **Where OTel is initialized** — search for tracer provider setup, SDK initialization,
   exporter configuration. Common file names: `tracing.*`, `telemetry.*`,
   `instrumentation.*`, `otel.*`
