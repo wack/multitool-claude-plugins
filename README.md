@@ -14,6 +14,25 @@ or observability. It walks the user through creating an API key, picking a
 
 Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, Rust, PHP, .NET.
 
+## Installation
+
+Install the plugin from within Claude Code by adding this repo as a plugin
+marketplace, then installing the `multitool` plugin from it:
+
+```
+/plugin marketplace add wack/multitool-skill
+/plugin install multitool@multitool-skill
+```
+
+The first command registers the marketplace catalog with Claude Code; the
+second installs the plugin to your user scope (available across all projects).
+If you already have the marketplace added but the plugin isn't showing up, run
+`/plugin marketplace update multitool-skill` to refresh it.
+
+After installing, run `/reload-plugins` to activate the plugin without
+restarting Claude Code. You can manage the plugin any time by running
+`/plugin` and opening the **Installed** tab.
+
 ## Layout
 
 ```
