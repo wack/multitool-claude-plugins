@@ -1,0 +1,17 @@
+{
+  "name": "multitool-skill",
+  "owner": {
+    "name": "wack"
+  },
+  "metadata": {
+    "description": "Marketplace for the MultiTool Claude Code plugin."
+  },
+  "plugins": [
+    {
+      "name": "multitool",
+      "source": "./",
+      "description": "Onboard services to MultiTool by wiring OpenTelemetry traces to the MultiTool OTLP endpoint.",
+      "homepage": "https://multitool.run"
+    }
+  ]
+}
