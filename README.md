@@ -20,14 +20,14 @@ Install the plugin from within Claude Code by adding this repo as a plugin
 marketplace, then installing the `multitool` plugin from it:
 
 ```
-/plugin marketplace add wack/multitool-skill
-/plugin install multitool@multitool-skill
+/plugin marketplace add wack/multitool-claude-plugins
+/plugin install multitool@multitool-claude-plugins
 ```
 
 The first command registers the marketplace catalog with Claude Code; the
 second installs the plugin to your user scope (available across all projects).
 If you already have the marketplace added but the plugin isn't showing up, run
-`/plugin marketplace update multitool-skill` to refresh it.
+`/plugin marketplace update multitool-claude-plugins` to refresh it.
 
 After installing, run `/reload-plugins` to activate the plugin without
 restarting Claude Code. You can manage the plugin any time by running
