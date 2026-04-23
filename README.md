@@ -38,7 +38,8 @@ restarting Claude Code. You can manage the plugin any time by running
 ```
 .
 ├── .claude-plugin/
-│   └── plugin.json                 # plugin manifest
+│   ├── plugin.json                 # plugin manifest
+│   └── marketplace.json            # marketplace catalog (lists this plugin)
 └── skills/
     └── otel-setup/
         ├── SKILL.md                # skill instructions + frontmatter
