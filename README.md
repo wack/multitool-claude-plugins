@@ -1,16 +1,25 @@
 # MultiTool Claude Plugins
 
 A Claude Code plugin that onboards services to [MultiTool](https://multitool.run)
-by wiring an existing OpenTelemetry setup to the MultiTool OTLP endpoint.
+by setting up OpenTelemetry (installing it from scratch when needed) and
+wiring it to the MultiTool OTLP endpoint.
 
 ## What it does
 
 The plugin ships one skill, `otel-setup` (invoked as `/multitool:otel-setup`),
-which Claude automatically
-invokes when a user mentions MultiTool in the context of tracing, monitoring,
-or observability. It walks the user through creating an API key, picking a
-`service.version` identifier, and points the OTLP HTTP exporter at
-`https://api.multitool.run/otlp/v1/traces`.
+which Claude automatically invokes when a user mentions MultiTool in the
+context of tracing, monitoring, or observability. The skill:
+
+- Detects the application's language and the current OpenTelemetry state
+  (nothing installed, installed but pointed at another backend, or already
+  pointed at MultiTool).
+- Helps the user create a MultiTool account and mint an API key via a bundled
+  interactive script (`scripts/multitool-onboard.sh`) that hides the password
+  and never exposes the cleartext key to the model.
+- Makes the code changes that point the OTLP HTTP exporter at
+  `https://api.multitool.run/otlp/v1/traces`, set the `X-API-KEY` header, and
+  populate the three mandatory resource attributes: `service.name`,
+  `service.version`, and `deployment.environment.name`.
 
 Supported languages: TypeScript/JavaScript, Python, Go, Java, Ruby, Rust, PHP, .NET.
 
@@ -42,8 +51,11 @@ restarting Claude Code. You can manage the plugin any time by running
 │   └── marketplace.json            # marketplace catalog (lists this plugin)
 └── skills/
     └── otel-setup/
-        ├── SKILL.md                # skill instructions + frontmatter
-        └── references/             # per-language setup snippets
+        ├── SKILL.md                            # skill instructions + frontmatter
+        ├── scripts/
+        │   └── multitool-onboard.sh           # interactive signup/login + API-key minter
+        └── references/
+            └── <language>/index.md            # per-language detect/install/configure guides
 ```
 
 ## Local development
