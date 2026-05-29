@@ -19,7 +19,7 @@
 
 3. **Where does the exporter point today?** Inspect `setEndpoint(...)` calls
    or the `otel.exporter.otlp.*` properties / env vars.
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -53,7 +53,7 @@ Configure via env vars (no code changes):
 
 ```bash
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 export OTEL_EXPORTER_OTLP_HEADERS="X-API-KEY=$MULTI_API_KEY"
 export OTEL_SERVICE_NAME=your-service-name
 export OTEL_RESOURCE_ATTRIBUTES="service.version=$APP_VERSION,deployment.environment.name=$APP_ENVIRONMENT"
@@ -120,7 +120,7 @@ implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 
 OtlpHttpSpanExporter exporter = OtlpHttpSpanExporter.builder()
-    .setEndpoint("https://api.multitool.run/otlp/v1/traces")
+    .setEndpoint("https://api.multitool.run/api/otlp/v1/traces")
     .addHeader("X-API-KEY", System.getenv("MULTI_API_KEY"))
     .build();
 ```
@@ -210,7 +210,7 @@ OtlpHttpSpanExporter existingExporter = OtlpHttpSpanExporter.builder()
 
 // New MultiTool exporter
 OtlpHttpSpanExporter multitoolExporter = OtlpHttpSpanExporter.builder()
-    .setEndpoint("https://api.multitool.run/otlp/v1/traces")
+    .setEndpoint("https://api.multitool.run/api/otlp/v1/traces")
     .addHeader("X-API-KEY", System.getenv("MULTI_API_KEY"))
     .build();
 
@@ -233,8 +233,8 @@ If using the `opentelemetry-spring-boot-starter`, configuration often goes in
 `application.properties` or `application.yml`:
 
 ```properties
-otel.exporter.otlp.endpoint=https://api.multitool.run
-otel.exporter.otlp.traces.endpoint=https://api.multitool.run/otlp/v1/traces
+otel.exporter.otlp.endpoint=https://api.multitool.run/api/otlp
+otel.exporter.otlp.traces.endpoint=https://api.multitool.run/api/otlp/v1/traces
 otel.exporter.otlp.headers=X-API-KEY=${MULTI_API_KEY}
 otel.service.name=your-service-name
 otel.resource.attributes=service.version=${APP_VERSION},deployment.environment.name=${APP_ENVIRONMENT}

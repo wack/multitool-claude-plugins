@@ -18,7 +18,7 @@
 
 3. **Where does the exporter point today?** Inspect the `AddOtlpExporter`
    options block — specifically `options.Endpoint` and `options.Headers`.
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -55,7 +55,7 @@ Configure via env vars (no code changes):
 ```bash
 export CORECLR_ENABLE_PROFILING=1
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 export OTEL_EXPORTER_OTLP_HEADERS="X-API-KEY=$MULTI_API_KEY"
 export OTEL_SERVICE_NAME=your-service-name
 export OTEL_RESOURCE_ATTRIBUTES="service.version=$APP_VERSION,deployment.environment.name=$APP_ENVIRONMENT"
@@ -94,7 +94,7 @@ builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing
         .AddOtlpExporter(options =>
         {
-            options.Endpoint = new Uri("https://api.multitool.run/otlp/v1/traces");
+            options.Endpoint = new Uri("https://api.multitool.run/api/otlp/v1/traces");
             options.Protocol = OtlpExportProtocol.HttpProtobuf;
             options.Headers = $"X-API-KEY={Environment.GetEnvironmentVariable("MULTI_API_KEY")}";
         })
@@ -157,7 +157,7 @@ builder.Services.AddOpenTelemetry()
         // New MultiTool exporter
         .AddOtlpExporter("multitool", options =>
         {
-            options.Endpoint = new Uri("https://api.multitool.run/otlp/v1/traces");
+            options.Endpoint = new Uri("https://api.multitool.run/api/otlp/v1/traces");
             options.Protocol = OtlpExportProtocol.HttpProtobuf;
             options.Headers = $"X-API-KEY={Environment.GetEnvironmentVariable("MULTI_API_KEY")}";
         })
@@ -186,7 +186,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
         }))
     .AddOtlpExporter(options =>
     {
-        options.Endpoint = new Uri("https://api.multitool.run/otlp/v1/traces");
+        options.Endpoint = new Uri("https://api.multitool.run/api/otlp/v1/traces");
         options.Protocol = OtlpExportProtocol.HttpProtobuf;
         options.Headers = $"X-API-KEY={Environment.GetEnvironmentVariable("MULTI_API_KEY")}";
     })

@@ -17,7 +17,7 @@ context of tracing, monitoring, or observability. The skill:
   interactive script (`scripts/multitool-onboard.sh`) that hides the password
   and never exposes the cleartext key to the model.
 - Makes the code changes that point the OTLP HTTP exporter at
-  `https://api.multitool.run/otlp/v1/traces`, set the `X-API-KEY` header, and
+  `https://api.multitool.run/api/otlp/v1/traces`, set the `X-API-KEY` header, and
   populate the three mandatory resource attributes: `service.name`,
   `service.version`, and `deployment.environment.name`.
 

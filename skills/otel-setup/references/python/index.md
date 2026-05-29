@@ -17,7 +17,7 @@
 
 3. **Where does the exporter point today?** Inspect the `OTLPSpanExporter`'s
    `endpoint=` value.
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -54,7 +54,7 @@ The wrapper reads OTel config from environment variables. Set these alongside
 
 ```bash
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 export OTEL_EXPORTER_OTLP_HEADERS="X-API-KEY=$MULTI_API_KEY"
 export OTEL_SERVICE_NAME=your-service-name
 export OTEL_RESOURCE_ATTRIBUTES="service.version=$APP_VERSION,deployment.environment.name=$APP_ENVIRONMENT"
@@ -92,7 +92,7 @@ import os
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 
 exporter = OTLPSpanExporter(
-    endpoint="https://api.multitool.run/otlp/v1/traces",
+    endpoint="https://api.multitool.run/api/otlp/v1/traces",
     headers={"X-API-KEY": os.environ.get("MULTI_API_KEY", "")},
 )
 ```
@@ -172,7 +172,7 @@ existing_exporter = OTLPSpanExporter(
 
 # New MultiTool exporter
 multitool_exporter = OTLPSpanExporter(
-    endpoint="https://api.multitool.run/otlp/v1/traces",
+    endpoint="https://api.multitool.run/api/otlp/v1/traces",
     headers={"X-API-KEY": os.environ.get("MULTI_API_KEY", "")},
 )
 

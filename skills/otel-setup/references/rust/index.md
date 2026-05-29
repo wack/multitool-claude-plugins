@@ -18,7 +18,7 @@
 3. **Where does the exporter point today?** Inspect the
    `SpanExporter::builder().with_endpoint(...)` call (or `OTEL_EXPORTER_OTLP_*`
    env vars).
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -95,7 +95,7 @@ headers.insert(
 
 let exporter = SpanExporter::builder()
     .with_http()
-    .with_endpoint("https://api.multitool.run/otlp/v1/traces")
+    .with_endpoint("https://api.multitool.run/api/otlp/v1/traces")
     .with_headers(headers)
     .build()?;
 ```
@@ -104,7 +104,7 @@ If the existing code configures the exporter via env vars, these work too:
 
 ```
 OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 OTEL_EXPORTER_OTLP_HEADERS=X-API-KEY=your-key
 OTEL_RESOURCE_ATTRIBUTES=service.name=your-service-name,service.version=your-version,deployment.environment.name=your-env
 ```
@@ -183,7 +183,7 @@ headers.insert(
 );
 let multitool_exporter = SpanExporter::builder()
     .with_http()
-    .with_endpoint("https://api.multitool.run/otlp/v1/traces")
+    .with_endpoint("https://api.multitool.run/api/otlp/v1/traces")
     .with_headers(headers)
     .build()?;
 

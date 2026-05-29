@@ -15,7 +15,7 @@
 
 3. **Where does the exporter point today?** Inspect the
    `OpenTelemetry::Exporter::OTLP::Exporter.new(endpoint: ...)` call.
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -80,7 +80,7 @@ Then run `bundle install`.
 require 'opentelemetry/exporter/otlp'
 
 exporter = OpenTelemetry::Exporter::OTLP::Exporter.new(
-  endpoint: 'https://api.multitool.run/otlp/v1/traces',
+  endpoint: 'https://api.multitool.run/api/otlp/v1/traces',
   headers: { 'X-API-KEY' => ENV['MULTI_API_KEY'] }
 )
 ```
@@ -145,7 +145,7 @@ OpenTelemetry::SDK.configure do |c|
   c.add_span_processor(
     OpenTelemetry::SDK::Trace::Export::BatchSpanProcessor.new(
       OpenTelemetry::Exporter::OTLP::Exporter.new(
-        endpoint: 'https://api.multitool.run/otlp/v1/traces',
+        endpoint: 'https://api.multitool.run/api/otlp/v1/traces',
         headers: { 'X-API-KEY' => ENV['MULTI_API_KEY'] }
       )
     )

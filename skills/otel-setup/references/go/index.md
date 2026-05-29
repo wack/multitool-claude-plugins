@@ -15,7 +15,7 @@
 
 3. **Where does the exporter point today?** Look at `otlptracehttp.WithEndpoint`
    and `WithURLPath` (or the equivalent grpc client).
-   - Endpoint `api.multitool.run` + path `/otlp/v1/traces` with the
+   - Endpoint `api.multitool.run` + path `/api/otlp/v1/traces` with the
      `X-API-KEY` header from `MULTI_API_KEY` → already on MultiTool; jump to
      "Verify mandatory attributes when already on MultiTool".
    - Points at another backend (Honeycomb, Datadog, Jaeger, default OTLP
@@ -74,7 +74,7 @@ import (
 
 exporter, err := otlptracehttp.New(ctx,
     otlptracehttp.WithEndpoint("api.multitool.run"),   // no scheme — the client adds https://
-    otlptracehttp.WithURLPath("/otlp/v1/traces"),
+    otlptracehttp.WithURLPath("/api/otlp/v1/traces"),
     otlptracehttp.WithHeaders(map[string]string{
         "X-API-KEY": os.Getenv("MULTI_API_KEY"),
     }),
@@ -89,8 +89,8 @@ optional port), not a full URL. The path goes in `WithURLPath`. The client uses
 HTTPS by default. If you prefer environment-variable configuration:
 
 ```
-OTEL_EXPORTER_OTLP_ENDPOINT=https://api.multitool.run
-OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+OTEL_EXPORTER_OTLP_ENDPOINT=https://api.multitool.run/api/otlp
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 OTEL_EXPORTER_OTLP_HEADERS=X-API-KEY=your-key
 OTEL_RESOURCE_ATTRIBUTES=service.name=your-service-name,service.version=your-version,deployment.environment.name=your-env
 ```
@@ -168,7 +168,7 @@ existingExporter, _ := otlptracehttp.New(ctx,
 // New MultiTool exporter
 multitoolExporter, _ := otlptracehttp.New(ctx,
     otlptracehttp.WithEndpoint("api.multitool.run"),
-    otlptracehttp.WithURLPath("/otlp/v1/traces"),
+    otlptracehttp.WithURLPath("/api/otlp/v1/traces"),
     otlptracehttp.WithHeaders(map[string]string{
         "X-API-KEY": os.Getenv("MULTI_API_KEY"),
     }),

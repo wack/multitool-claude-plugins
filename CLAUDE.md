@@ -53,7 +53,7 @@ describing a MultiTool onboarding scenario, not by typing `/otel-setup`.
 These are load-bearing details — when editing SKILL.md or any reference file,
 do not let them drift:
 
-- **OTLP endpoint:** `https://api.multitool.run/otlp/v1/traces`. HTTP only —
+- **OTLP endpoint:** `https://api.multitool.run/api/otlp/v1/traces`. HTTP only —
   the gRPC exporter will not work. Every reference file must use the
   `exporter-trace-otlp-http` package (or its per-language equivalent), never
   the gRPC variant.

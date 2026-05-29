@@ -30,7 +30,7 @@ out where they are before deciding what to change.
 
 These never change, regardless of language or starting state:
 
-- **OTLP endpoint:** `https://api.multitool.run/otlp/v1/traces` (HTTP only —
+- **OTLP endpoint:** `https://api.multitool.run/api/otlp/v1/traces` (HTTP only —
   the gRPC exporter will not work).
 - **Auth header:** `X-API-KEY: <value>` (uppercase, with the `X-` prefix),
   sourced from the `MULTI_API_KEY` env var. Never hardcoded. Other casings
@@ -353,7 +353,7 @@ Tell the user to:
   local shell.
 - Confirm the auth header is `X-API-KEY` (uppercase, with `X-` prefix), not
   `api-key` — the old name does not authenticate.
-- Verify the exporter URL is exactly `https://api.multitool.run/otlp/v1/traces`.
+- Verify the exporter URL is exactly `https://api.multitool.run/api/otlp/v1/traces`.
 - Make sure the OTLP **HTTP** exporter is used (not gRPC) — see the
   language reference for the correct package.
 - Check for network errors in service logs around OTel export.

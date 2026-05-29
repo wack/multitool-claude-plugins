@@ -19,7 +19,7 @@
 3. **Where does the exporter point today?** Inspect the
    `OtlpHttpTransportFactory->create(...)` URL or the `OTEL_EXPORTER_OTLP_*`
    env vars.
-   - `https://api.multitool.run/otlp/v1/traces` with `X-API-KEY` header from
+   - `https://api.multitool.run/api/otlp/v1/traces` with `X-API-KEY` header from
      `MULTI_API_KEY` → already on MultiTool; jump to "Verify mandatory
      attributes when already on MultiTool".
    - Points at another backend → keep it; add a MultiTool exporter
@@ -59,7 +59,7 @@ code changes. Configure via env vars (no SDK setup code needed):
 ```bash
 export OTEL_PHP_AUTOLOAD_ENABLED=true
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 export OTEL_EXPORTER_OTLP_HEADERS="X-API-KEY=$MULTI_API_KEY"
 export OTEL_SERVICE_NAME=your-service-name
 export OTEL_RESOURCE_ATTRIBUTES="service.version=$APP_VERSION,deployment.environment.name=$APP_ENVIRONMENT"
@@ -92,7 +92,7 @@ use OpenTelemetry\Contrib\Otlp\OtlpHttpTransportFactory;
 use OpenTelemetry\Contrib\Otlp\SpanExporter;
 
 $transport = (new OtlpHttpTransportFactory())->create(
-    'https://api.multitool.run/otlp/v1/traces',
+    'https://api.multitool.run/api/otlp/v1/traces',
     'application/x-protobuf',
     ['X-API-KEY' => getenv('MULTI_API_KEY')]
 );
@@ -167,7 +167,7 @@ $existingExporter = build_existing_exporter();
 
 // New MultiTool exporter
 $multitoolTransport = (new OtlpHttpTransportFactory())->create(
-    'https://api.multitool.run/otlp/v1/traces',
+    'https://api.multitool.run/api/otlp/v1/traces',
     'application/x-protobuf',
     ['X-API-KEY' => getenv('MULTI_API_KEY')]
 );
@@ -200,8 +200,8 @@ The OTel PHP SDK also supports configuration via environment variables, which
 can be simpler if the existing setup already uses them:
 
 ```bash
-OTEL_EXPORTER_OTLP_ENDPOINT=https://api.multitool.run
-OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/otlp/v1/traces
+OTEL_EXPORTER_OTLP_ENDPOINT=https://api.multitool.run/api/otlp
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://api.multitool.run/api/otlp/v1/traces
 OTEL_EXPORTER_OTLP_HEADERS=X-API-KEY=your-key
 OTEL_SERVICE_VERSION=${APP_VERSION}
 OTEL_RESOURCE_ATTRIBUTES=deployment.environment.name=${APP_ENVIRONMENT}

@@ -21,7 +21,7 @@ Run these checks in order — they tell you which section below to read next.
 
 3. **Where does the exporter point today?** In whatever file owns the SDK, look
    at the `OTLPTraceExporter` (or `OTLPExporter`) `url:` / `endpoint:` value.
-   - Already `https://api.multitool.run/otlp/v1/traces` with the `X-API-KEY`
+   - Already `https://api.multitool.run/api/otlp/v1/traces` with the `X-API-KEY`
      header sourced from `MULTI_API_KEY` → already on MultiTool; jump to
      "Verify mandatory attributes when already on MultiTool".
    - Pointed at another backend (Honeycomb, Datadog, Jaeger, default OTLP
@@ -93,7 +93,7 @@ npm install @opentelemetry/exporter-trace-otlp-http
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 
 const traceExporter = new OTLPTraceExporter({
-  url: 'https://api.multitool.run/otlp/v1/traces',
+  url: 'https://api.multitool.run/api/otlp/v1/traces',
   headers: {
     'X-API-KEY': process.env['MULTI_API_KEY'] ?? '',
   },
@@ -180,7 +180,7 @@ const existingExporter = new OTLPTraceExporter({
 
 // New MultiTool exporter
 const multitoolExporter = new OTLPTraceExporter({
-  url: 'https://api.multitool.run/otlp/v1/traces',
+  url: 'https://api.multitool.run/api/otlp/v1/traces',
   headers: { 'X-API-KEY': process.env['MULTI_API_KEY'] ?? '' },
 })
 
